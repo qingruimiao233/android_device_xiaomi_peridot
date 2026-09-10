@@ -4,6 +4,33 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# 选择是否将当前时、分、秒添加到版本号中
+AVIUM_VERSION_APPEND_TIME_OF_DAY ?= false
+# 构建者名称
+AVIUM_MAINTAINER ?= qingrui
+
+# Soc型号
+AVIUM_SETTINGS_SOC_MODEL_NAME ?= sm8635
+# 设备代号
+AVIUM_SETTINGS_DEVICE_CODENAME ?= peridot
+
+# 选择是否开启gms
+WITH_GMS ?= false
+# LatinIMEGooglePrebuilt
+# 仅在构建非gms版本时起作用
+# 在gms版本上会使用gms中的Gboard
+TARGET_INCLUDE_GOOGLEIME ?= false
+TARGET_GOOGLEIME_OVERRIDE_IME ?= false
+
+# 将此配置指定为true来开启欺骗 Prop，
+# 用于隐藏 bootloader 解锁状态
+AVIUM_FORCE_SET_FAKE_PROP ?= false
+
+# 通常在 Android 16 QPR2 上，模糊已经默认启用
+# 将 TARGET_FORCE_ENABLE_BLUR 指定为true来强制开启模糊
+TARGET_FORCE_ENABLE_BLUR ?= false
+
+
 # Generic ramdisk allow list
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 
@@ -475,5 +502,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.wifi.aware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.aware.xml
 
+# IFAA Support
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.oem.ifaa=1 \
+    persist.sys.ifaa=true
+
 # Vendor
 $(call inherit-product, vendor/xiaomi/peridot/peridot-vendor.mk)
+
