@@ -30,7 +30,6 @@ AVIUM_FORCE_SET_FAKE_PROP ?= false
 # 将 TARGET_FORCE_ENABLE_BLUR 指定为true来强制开启模糊
 TARGET_FORCE_ENABLE_BLUR ?= false
 
-
 # Generic ramdisk allow list
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 
@@ -111,6 +110,8 @@ AUDIO_HAL_DIR := hardware/qcom-caf/sm8650/audio/primary-hal
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_cliffs/audio_effects.xml \
     $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_cliffs/audio_policy_configuration.xml
+
+# device/xiaomi/peridot/soter/privapp-permissions-soter.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-soter.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
@@ -507,6 +508,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.oem.ifaa=1 \
     persist.sys.ifaa=true
 
+# Soter
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.soter-impl
+
 # Vendor
 $(call inherit-product, vendor/xiaomi/peridot/peridot-vendor.mk)
 
+# MIUI Camera Device Config
+$(call inherit-product, device/xiaomi/peridot-miuicamera/device.mk)
+
+# MIUI Camera Vendor Config
+$(call inherit-product, vendor/xiaomi/peridot-miuicamera/peridot-miuicamera-vendor.mk)
+
+# Xiaomi Dolby
+$(call inherit-product, hardware/dolby/dolby.mk)

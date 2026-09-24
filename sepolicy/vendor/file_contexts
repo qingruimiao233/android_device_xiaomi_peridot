@@ -93,3 +93,6 @@
 /dev/xiaomi-touch u:object_r:touchfeature_device:s0
 /sys/devices/virtual/touch/touch_dev/ear_sensor u:object_r:sysfs_tp_virtual_prox:s0
 /sys/devices/virtual/touch/touch_dev/palm_sensor u:object_r:sysfs_tp_virtual_prox:s0
+
+# Soter
+/vendor/bin/hw/vendor\.xiaomi\.hardware\.soter@1\.0-service u:object_r:hal_soter_impl_exec:s0

@@ -32,4 +32,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 # Additional Apps
-PRODUCT_PACKAGES += BCR
+PRODUCT_PACKAGES += \
+	BCR
+
+# releasekey
+# PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/extra/certs/releasekey

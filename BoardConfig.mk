@@ -73,7 +73,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 
 DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/framework_manifest.xml
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
-DEVICE_MANIFEST_FILE := \
+DEVICE_MANIFEST_FILE += \
     $(DEVICE_PATH)/configs/hidl/manifest_vendor.xml \
     hardware/qcom-caf/sm8650/audio/primary-hal/configs/common/manifest_non_qmaa.xml \
     hardware/qcom-caf/sm8650/audio/primary-hal/configs/common/manifest_non_qmaa_extn.xml
@@ -226,6 +226,7 @@ ENABLE_VENDOR_RIL_SERVICE := true
 include device/lineage/sepolicy/libperfmgr/sepolicy.mk
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+# BOARD_PLATFORM_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # Vendor security patch
 VENDOR_SECURITY_PATCH := 2026-02-01
@@ -275,3 +276,7 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Vendor
 include vendor/xiaomi/peridot/BoardConfigVendor.mk
+
+# Include MIUI Camera BoardConfig
+include device/xiaomi/peridot-miuicamera/BoardConfig.mk
+include vendor/xiaomi/peridot-miuicamera/BoardConfigVendor.mk
